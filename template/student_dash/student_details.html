@@ -1,0 +1,54 @@
+{% extends 'student_dash/student_dashboard.html' %}
+{%load crispy_forms_tags %}
+
+
+{% block content %}
+
+
+<h4>Staff Details....</h4>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Age</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col">Department</th>
+      <th scope="col">semester</th>
+      <th scope="col">RollNumber</th>
+      <th scope="col">AdarNumber</th>
+      <th scope="col">Image</th>
+      <th scope="col">DELETE</th>
+      <th scope="col">UPDATE</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in studentkey %}
+    <tr>
+      <td>{{i.id}}</td>
+      <td>{{i.name}}</td>
+      <td>{{i.gender}}</td>
+      <td>{{i.age}}</td>
+      <td>{{i.phone}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.department}}</td>
+      <td>{{i.semester}}</td>
+      <td>{{i.roll_number}}</td>
+      <td>{{i.id_number}}</td>
+      <td><img src="{{i.image.url}}"></td>
+      <td><button type="button" class="btn btn-primary"><a href="{% url 'student_del' i.id %}">DELETE</a></button></td>
+
+
+      <td><button type="button" class="btn btn-danger"><a href="{% url 'student_up' i.id %}">UPDATE</a></button></td>
+
+    </tr>
+{% endfor %}
+
+  </tbody>
+</table>
+{% endblock %}
+
