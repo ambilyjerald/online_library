@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
-from myapp.models import Login_view, Faculty, Student
+from myapp.models import Login_view, Faculty, Student, Add_Book, Feedback
 
 
 class library_login(UserCreationForm):
@@ -30,6 +30,12 @@ class add_book_form(forms.ModelForm):
         model = Add_Book
         fields=('__all__')
         exclude=('staff',)
+
+class student_feedback_form(forms.ModelForm):
+    class Meta:
+        model = Feedback
+        fields = ('subject','feedback')
+
 
 class dateinput(forms.DateInput):
     input_type = 'date'

@@ -16,6 +16,7 @@ class Faculty(models.Model):
     department = models.CharField(max_length=20)
     id_number = models.IntegerField()
     image = models.ImageField(upload_to='documents/')
+    is_approved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -35,12 +36,13 @@ class Student(models.Model):
     roll_number = models.IntegerField()
     id_number = models.IntegerField()
     image = models.ImageField(upload_to='documents/')
+    is_approved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
 
 class Add_Book(models.Model):
-    seller=models.ForeignKey(staff,on_delete=models.CASCADE,related_name='add_book')
+    faculty=models.ForeignKey(Faculty,on_delete=models.CASCADE,related_name='add_book')
     category = models.CharField(max_length=200)
     book_name = models.CharField(max_length=250)
     author_name = models.CharField(max_length=250)
@@ -50,6 +52,15 @@ class Add_Book(models.Model):
     pages = models.IntegerField()
     copies = models.IntegerField()
     cost = models.IntegerField()
+    image = models.FileField(upload_to='documents/')
 
     def __str__(self):
-        return self.name
+        return self.book_name
+
+class Feedback(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name = "feedback_student")
+    date = models.DateField(auto_now = True)
+    subject = models.CharField(max_length = 250)
+    feedback = models.TextField()
+    reply = models.TextField(blank = True, null = True)
+
