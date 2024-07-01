@@ -31,5 +31,18 @@ urlpatterns = [
      path("admin_book_table",admin_views.admin_book_table,name='admin_book_table'),
      path("admin_book_delete/<int:id>/",admin_views.admin_delete_book,name="admin_book_delete"),
 
+     path('admin_view_feedbacks/', admin_views.admin_view_feedbacks, name='admin_view_feedbacks'),
+     path('admin_feedback_reply/<int:id>/', admin_views.admin_feedback_reply, name='admin_feedback_reply'),
+
+     path('faculty_approval_requests/', admin_views.faculty_approval_requests, name='faculty_approval_requests'),
+     path('remove_faculty_request/<int:id>/', admin_views.remove_faculty_request, name='remove_faculty_request'),
+     path('approve_faculty/<int:id>/', admin_views.approve_faculty, name='approve_faculty'),
+
+     path('student_approval_requests/', admin_views.student_approval_requests, name='student_approval_requests'),
+     path('remove_student_request/<int:id>/', admin_views.remove_student_request, name='remove_student_request'),
+     path('approve_student/<int:id>/', admin_views.approve_student, name='approve_student'),
+
+
+
 ]
 static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

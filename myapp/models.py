@@ -64,3 +64,6 @@ class Feedback(models.Model):
     feedback = models.TextField()
     reply = models.TextField(blank = True, null = True)
 
+
+
+

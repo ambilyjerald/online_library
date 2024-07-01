@@ -41,3 +41,8 @@ class dateinput(forms.DateInput):
     input_type = 'date'
 
 
+class feedback_form(forms.ModelForm):
+    class Meta:
+        model = Feedback
+        fields = ('__all__')
+        exclude = ('student','reply')
