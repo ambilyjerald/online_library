@@ -32,7 +32,7 @@
       <td><a href="{% url 'approve_faculty' i.id %}"><button class="btn btn-success">Approve<br>as faculty</button></a></td>
       <td><a href="{% url 'remove_faculty_request' i.id %}" onclick="confirm_delete()"><button class="btn btn-danger">Delete<br>this faculty<br></button></a></td>
     </tr>
-    {% endfor %}
+  {% endfor %}
   </tbody>
 </table>
 

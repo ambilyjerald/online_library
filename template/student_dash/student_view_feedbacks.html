@@ -1,0 +1,39 @@
+{% extends 'student_dash/studentdashboard.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">student name</th>
+      <th scope="col">date</th>
+      <th scope="col">subject</th>
+      <th scope="col">feedback</th>
+      <th scope="col">reply</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in student_objects %}
+    <tr>
+      <th scope="row">{{i.id}}</th>
+      <td>{{i.student.name}}</td>
+      <td>{{i.date}}</td>
+      <td>{{i.subject}}</td>
+      <td>{{i.feedback}}</td>
+      <td>
+      {% if i.reply == None %}
+        No reply
+      {% else %}
+      {{i.reply}}
+      {% endif %}
+      </td>
+      <td><a href="{% url 'student_feedback_delete' i.id %}" onclick="confirm_delete()"><button class="btn btn-danger">Delete</button></a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

@@ -17,24 +17,37 @@ class library_faculty(forms.ModelForm):
     class Meta:
         model = Faculty
         fields = ('__all__')
-        exclude = ('user','status1')
+        exclude = ('user','admin_approval_status')
+
+class faculty_update_form(forms.ModelForm):
+    class Meta:
+        model = Faculty
+        fields = ('__all__')
+        exclude = ('user', 'admin_approval_status')
+
+
+
 
 
 class library_student(forms.ModelForm):
     class Meta:
         model = Student
         fields = ('__all__')
-        exclude = ('user','status2')
+        exclude = ('user','admin_approval_status')
+
+
+class student_update_form(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ('__all__')
+        exclude = ('user','admin_approval_status')
+
 class add_book_form(forms.ModelForm):
     class Meta:
         model = Add_Book
-        fields=('__all__')
-        exclude=('staff',)
+        fields = ('__all__')
+        exclude = ('staff',)
 
-class student_feedback_form(forms.ModelForm):
-    class Meta:
-        model = Feedback
-        fields = ('subject','feedback')
 
 
 class dateinput(forms.DateInput):

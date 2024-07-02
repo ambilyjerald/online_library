@@ -1,11 +1,11 @@
-{% extends 'student_dash/studentdashboard.html' %}
+{% extends 'Admin_dash/admindashboard.html' %}
 {%load crispy_forms_tags %}
 
 
 {% block content %}
 
 
-<h4>Staff Details....</h4>
+<h4>Student Details....</h4>
 <br>
 <table class="table">
   <thead>
@@ -22,7 +22,7 @@
       <th scope="col">AdarNumber</th>
       <th scope="col">Image</th>
       <th scope="col">DELETE</th>
-      <th scope="col">UPDATE</th>
+<!--      <th scope="col">UPDATE</th>-->
 
     </tr>
   </thead>
@@ -43,7 +43,7 @@
       <td><button type="button" class="btn btn-primary"><a href="{% url 'student_del' i.id %}">DELETE</a></button></td>
 
 
-      <td><button type="button" class="btn btn-danger"><a href="{% url 'student_up' i.id %}">UPDATE</a></button></td>
+<!--      <td><button type="button" class="btn btn-danger"><a href="{% url 'student_up' i.id %}">UPDATE</a></button></td>-->
 
     </tr>
 {% endfor %}

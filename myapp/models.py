@@ -1,3 +1,5 @@
+from datetime import timedelta, datetime
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -8,6 +10,7 @@ class Login_view(AbstractUser):
 
 class Faculty(models.Model):
     user = models.ForeignKey(Login_view,on_delete=models.CASCADE, related_name='faculty')
+    admin_approval_status = models.BooleanField(default = 0)
     name = models.CharField(max_length=20)
     gender = models.CharField(max_length=10)
     age = models.IntegerField()
@@ -16,7 +19,7 @@ class Faculty(models.Model):
     department = models.CharField(max_length=20)
     id_number = models.IntegerField()
     image = models.ImageField(upload_to='documents/')
-    is_approved = models.BooleanField(default=False)
+    # is_approved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -26,6 +29,7 @@ class Faculty(models.Model):
 
 class Student(models.Model):
     user = models.ForeignKey(Login_view,on_delete=models.CASCADE,related_name='student')
+    admin_approval_status = models.BooleanField(default = 0)
     name = models.CharField(max_length=20)
     gender = models.CharField(max_length=10)
     age = models.IntegerField()
@@ -36,7 +40,7 @@ class Student(models.Model):
     roll_number = models.IntegerField()
     id_number = models.IntegerField()
     image = models.ImageField(upload_to='documents/')
-    is_approved = models.BooleanField(default=False)
+    # is_approved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -63,6 +67,18 @@ class Feedback(models.Model):
     subject = models.CharField(max_length = 250)
     feedback = models.TextField()
     reply = models.TextField(blank = True, null = True)
+
+
+
+def expiry():
+    return datetime.today() + timedelta(days=14)
+
+class IssuedBook(models.Model):
+    student_id = models.CharField(max_length=100, blank=True)
+    isbn = models.CharField(max_length=13)
+    issued_date = models.DateField(auto_now=True)
+    expiry_date = models.DateField(default=expiry)
+
 
 
 

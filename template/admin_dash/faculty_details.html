@@ -1,4 +1,4 @@
-{% extends 'student_dash/studentdashboard.html' %}
+{% extends 'admin_dash/admindashboard.html' %}
 {%load crispy_forms_tags %}
 
 
@@ -17,17 +17,15 @@
       <th scope="col">Phone</th>
       <th scope="col">Email</th>
       <th scope="col">Department</th>
-      <th scope="col">semester</th>
-      <th scope="col">RollNumber</th>
       <th scope="col">AdarNumber</th>
       <th scope="col">Image</th>
-      <th scope="col">DELETE</th>
-      <th scope="col">UPDATE</th>
+       <th scope="col">DELETE</th>
+<!--       <th scope="col">UPDATE</th>-->
 
     </tr>
   </thead>
   <tbody>
-  {% for i in studentkey %}
+  {% for i in facultykey %}
     <tr>
       <td>{{i.id}}</td>
       <td>{{i.name}}</td>
@@ -36,14 +34,13 @@
       <td>{{i.phone}}</td>
       <td>{{i.email}}</td>
       <td>{{i.department}}</td>
-      <td>{{i.semester}}</td>
-      <td>{{i.roll_number}}</td>
       <td>{{i.id_number}}</td>
+
       <td><img src="{{i.image.url}}"></td>
-      <td><button type="button" class="btn btn-primary"><a href="{% url 'student_del' i.id %}">DELETE</a></button></td>
+      <td><button type="button" class="btn btn-primary"><a href="{% url 'faculty_del' i.id %}">DELETE</a></button></td>
 
 
-      <td><button type="button" class="btn btn-danger"><a href="{% url 'student_up' i.id %}">UPDATE</a></button></td>
+<!--      <td><button type="button" class="btn btn-danger"><a href="{% url 'faculty_up' i.id %}">UPDATE</a></button></td>-->
 
     </tr>
 {% endfor %}

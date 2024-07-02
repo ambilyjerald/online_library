@@ -36,6 +36,25 @@ def remove_student_request(request, id):
     user_object.delete()
     return redirect('student_approval_requests')
 
+def admin_read_faculty(request):
+    data=Faculty.objects.all()
+    return render(request,'admin_dash/faculty_details.html',{'facultykey':data})
+
+def admin_del_faculty(request,id):
+    data=Faculty.objects.get(id=id)
+    data.delete()
+    return redirect('faculty_detail')
+
+def admin_read_student(request):
+    data=Student.objects.all()
+    return render(request,'admin_dash/student_details.html',{'studentkey':data})
+
+def admin_del_student(request,id):
+    data=Student.objects.get(id=id)
+    data.delete()
+    return redirect('student_detail')
+
+
 
 
 def admin_book_table(request):
@@ -63,7 +82,7 @@ def admin_feedback_reply(request, id):
     return render(request,'admin_dash/admin_feedback_reply.html',{'feedback_object':feedback_object})
 
 
-def admin_feedback_delete(request, id):
+def admin_feedback_delete(request,id):
     feedback_object = Feedback.objects.get(id=id)
     feedback_object.delete()
     return redirect('admin_view_feedbacks')

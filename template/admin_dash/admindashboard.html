@@ -52,14 +52,24 @@
       </li>
 
       <li>
-        <a href=" {% static 'icons.html' %} ">
+        <a href=" {% url 'faculty_approval_requests' %} ">
           <i class="zmdi zmdi-invert-colors"></i> <span>Approve Faculty</span>
         </a>
       </li>
 
       <li>
-        <a href=" {% static 'forms.html' %} ">
+        <a href=" {% url 'student_approval_requests' %} ">
           <i class="zmdi zmdi-format-list-bulleted"></i> <span>Approve Student</span>
+        </a>
+      </li>
+       <li>
+        <a href=" {% url 'admin_faculty_detail' %} ">
+          <i class="zmdi zmdi-format-list-bulleted"></i> <span>Faculty Details</span>
+        </a>
+      </li>
+        <li>
+        <a href=" {% url 'admin_student_detail' %} ">
+          <i class="zmdi zmdi-format-list-bulleted"></i> <span>Student Details</span>
         </a>
       </li>
 
@@ -88,6 +98,7 @@
           <i class="zmdi zmdi-format-list-bulleted"></i> <span>Reviews</span>
         </a>
       </li>
+
 
 
        <li>
