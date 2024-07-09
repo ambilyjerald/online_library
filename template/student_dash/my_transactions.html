@@ -1,0 +1,33 @@
+{% extends 'student_dash/studentdashboard.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2>My Transactions</h2>
+<table>
+    <tr>
+        <th>Book</th>
+        <th>Issue Date</th>
+        <th>Due Date</th>
+        <th>Return Date</th>
+        <th>Fine</th>
+    </tr>
+    {% for transaction in transactions %}
+    <tr>
+        <td>{{ transaction.book.book_name }}</td>
+        <td>{{ transaction.issue_date }}</td>
+        <td>{{ transaction.due_date }}</td>
+        <td>{{ transaction.return_date }}</td>
+        <td>
+            {% if transaction.fine and not transaction.fine.paid %}
+            <a href="{% url 'pay_fine' transaction.fine.id %}">Pay Fine</a> - Rs. {{ transaction.fine.amount }}
+            {% else %}
+            {% if transaction.fine %}
+            Paid - Rs. {{ transaction.fine.amount }}
+            {% else %}
+            No Fine
+            {% endif %}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

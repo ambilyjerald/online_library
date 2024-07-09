@@ -1,0 +1,29 @@
+{% extends 'student_dash/studentdashboard.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h2>Pay Fine</h2>
+<div class="card">
+    <div class="card-header">
+        Fine Details
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Book Title: {{ fine.transaction.book.book_name }}</h5>
+        <p class="card-text"><strong>Student Name:</strong> {{ fine.transaction.student.user.username }}</p>
+        <p class="card-text"><strong>Issue Date:</strong> {{ fine.transaction.issue_date }}</p>
+        <p class="card-text"><strong>Due Date:</strong> {{ fine.transaction.due_date }}</p>
+        <p class="card-text"><strong>Return Date:</strong> {{ fine.transaction.return_date }}</p>
+        <p class="card-text"><strong>Fine Amount:</strong> Rs. {{ fine.amount }}</p>
+        <p class="card-text"><strong>Fine Status:</strong> {% if fine.paid %}Paid{% else %}Unpaid{% endif %}</p>
+
+        {% if not fine.paid %}
+        <form method="post" action="{% url 'pay_fine' fine.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Pay Fine</button>
+        </form>
+        {% else %}
+        <p class="text-success">Fine has been paid.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

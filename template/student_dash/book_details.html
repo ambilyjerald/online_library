@@ -1,0 +1,165 @@
+
+{% extends 'student_dash/studentdashboard.html' %}
+{% load crispy_forms_tags %}
+
+{% block search %}
+
+<form method="GET" style="display:grid;grid-template-columns:1fr 1fr;">
+    <p style="margin-bottom:2%;">{{searched_form.form.category}}</p>
+    <button class="btn btn-warning" type="submit" style="margin-bottom:2%;width:50%;margin-left:5px;" >Search </button>
+</form>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<div style="display:grid;grid-template-columns:1fr;grid-gap:20px;">
+
+{% for i in data %}
+
+<div class="card" style="display:grid;grid-template-columns:1fr 1fr;width:550px;height:250px;background-color:#E6E6FA;">
+    <div style="position:relative;">
+      <img src="{{i.image.url}}" class="img-fluid rounded-start" alt="image not found" style="width:100%;height:100%;position:absolute;top:0;left:0;">
+    </div>
+      <div class="card-body">
+        <h5 class="card-title" style="color:green;">{{i.book_name}}</h5>
+        <p class="card-text">
+          Category:{{i.category}}<br>
+          Book_Name:{{i.book_name}}<br>
+          Author_Name:{{i.author_name}}<br>
+          Book_Number::{{i.book_number}}<br>
+          ISBN::{{i.isbn}}<br>
+          Publisher::{{i.publisher}}<br>
+          Pages::{{i.pages}}<br>
+          Copies::{{i.copies}}<br>
+          Cost::{{i.cost}}<br>
+            <form method = 'post'>
+          {% csrf_token %}
+              <a href="{% url 'add_to_cart' i.id %}" type ='submit' class="btn btn-success">Add to Cart</a>
+
+
+           </form>
+          </p>
+
+
+      </div>
+</div>
+
+
+{% endfor %}
+</div>
+
+
+
+{% endblock %}
+
+
+<!---->
+
+  <tbody>
+  {% for i in data %}
+  <div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4" style="position:relative">
+      <img src="{{i.image.url}}" class="img-fluid rounded-start" alt="..." style="width:100%; height:100%; position:absolute;top:0;left:0;">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+         <h5 class="card-title" style="color:green;">{{i.book_name}}</h5>
+
+<!--        <h5 class="card-title">Card title</h5>-->
+        <p class="card-text">
+          Category:{{i.category}}<br>
+          Book_Name:{{i.book_name}}<br>
+          Author_Name:{{i.author_name}}<br>
+          Book_Number::{{i.book_number}}<br>
+          ISBN::{{i.isbn}}<br>
+          Publisher::{{i.publisher}}<br>
+          Pages::{{i.pages}}<br>
+          Copies::{{i.copies}}<br>
+          Cost::{{i.cost}}<br>
+          <form method = 'post'>
+          {% csrf_token %}
+              <a href="{% url 'add_to_cart' i.id %}" type ='submit' class="btn btn-success">Add to Cart</a>
+
+
+           </form>
+          </p>
+
+
+      </div>
+
+
+
+<!--          <a href="{% url 'admin_book_delete' i.id %}" class="btn btn-danger">Delete</a>-->
+<!--          <a href="{% url 'book_update' i.id %}" class="btn btn-info">Update</a>-->
+        </p>
+
+
+<!--        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+  </tbody>
+</table>
+{% endblock %}
+
+
+{% extends 'customer_dash/customerdashboard.html' %}
+{% load crispy_forms_tags %}
+
+{% block search %}
+
+<form method="GET" style="display:grid;grid-template-columns:1fr 1fr;">
+    <p style="margin-bottom:2%;">{{searched_form.form.brand}}</p>
+    <button class="btn btn-warning" type="submit" style="margin-bottom:2%;width:50%;margin-left:5px;" >Search </button>
+</form>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<div style="display:grid;grid-template-columns:1fr;grid-gap:20px;">
+
+{% for i in data %}
+
+<div class="card" style="display:grid;grid-template-columns:1fr 1fr;width:550px;height:250px;background-color:#E6E6FA;">
+    <div style="position:relative;">
+      <img src="{{i.image.url}}" class="img-fluid rounded-start" alt="image not found" style="width:100%;height:100%;position:absolute;top:0;left:0;">
+    </div>
+      <div class="card-body">
+        <h5 class="card-title" style="color:green;">{{i.model_name}}</h5>
+        <p class="card-text text" style="color:brown;" >
+          name:{{i.name}}<br>
+          brand:{{i.brand}}<br>
+           description:{{i.description}}<br>
+            price:{{i.price}}<br>
+            <form method = 'post'>
+          {% csrf_token %}
+              <a href="{% url 'add_to_cart' i.id %}" type ='submit' class="btn btn-success">Add to Cart</a>
+
+
+           </form>
+          </p>
+
+
+      </div>
+</div>
+
+
+{% endfor %}
+</div>
+
+
+
+{% endblock %}
+

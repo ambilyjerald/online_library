@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ("student_id", models.CharField(blank=True, max_length=100)),
                 ("isbn", models.CharField(max_length=13)),
                 ("issued_date", models.DateField(auto_now=True)),
-                ("expiry_date", models.DateField(default=myapp.models.expiry)),
+                # ("expiry_date", models.DateField(default=myapp.models.expiry)),
             ],
         ),
         migrations.RenameField(

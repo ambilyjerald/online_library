@@ -44,6 +44,7 @@ urlpatterns = [
 
      path('admin_view_feedbacks/', admin_views.admin_view_feedbacks, name='admin_view_feedbacks'),
      path('admin_feedback_reply/<int:id>/', admin_views.admin_feedback_reply, name='admin_feedback_reply'),
+     path('admin_feedback_delete/<int:id>/',admin_views.admin_feedback_delete,name="admin_feedback_delete"),
 
      path('faculty_approval_requests/', admin_views.faculty_approval_requests, name='faculty_approval_requests'),
      path('remove_faculty_request/<int:id>/', admin_views.remove_faculty_request, name='remove_faculty_request'),
@@ -56,6 +57,14 @@ urlpatterns = [
      path('student_feedback/', student_views.student_feedback, name='student_feedback'),
      path('student_view_feedbacks/', student_views.student_view_feedbacks, name='student_view_feedbacks'),
      path('student_feedback_delete/<int:id>/', student_views.student_feedback_delete, name='student_feedback_delete'),
+
+     path('search_books/', student_views.search_books, name='search_books'),
+     path('issue_book/', student_views.issue_book, name='issue_book'),
+     path('renew_book/<int:transaction_id>/',student_views.renew_book, name='renew_book'),
+     path('return_book/<int:transaction_id>/',student_views.return_book, name='return_book'),
+     path('my_transactions/',student_views.my_transactions, name='my_transactions'),
+     path('admin_view_transactions/',admin_views.admin_view_transactions, name='admin_view_transactions'),
+     path('pay_fine/<int:fine_id>/', student_views.pay_fine, name='pay_fine'),
 
 
 

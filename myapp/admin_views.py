@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 
 from myapp.forms import add_book_form
-from myapp.models import Faculty, Add_Book, Feedback, Student
+from myapp.models import Faculty, Add_Book, Feedback, Student, Transaction
 
 
 def faculty_approval_requests(request):
@@ -86,3 +86,9 @@ def admin_feedback_delete(request,id):
     feedback_object = Feedback.objects.get(id=id)
     feedback_object.delete()
     return redirect('admin_view_feedbacks')
+
+def admin_view_transactions(request):
+    transactions = Transaction.objects.all()
+    return render(request, 'admin_dash/admin_view_transactions.html', {'transactions': transactions})
+
+

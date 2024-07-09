@@ -82,8 +82,14 @@
       </li>
 
       <li>
-        <a href=" {% static 'profile.html' %} ">
+        <a href=" {% url 'student_feedback' %} ">
           <i class="zmdi zmdi-face"></i> <span>Feedback</span>
+        </a>
+      </li>
+
+      <li>
+        <a href=" {% url 'student_view_feedbacks' %} ">
+          <i class="zmdi zmdi-face"></i> <span>View Feedback</span>
         </a>
       </li>
         <li>

@@ -1,0 +1,31 @@
+{% extends 'admin_dash/admindashboard.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2>All Transactions</h2>
+<table>
+    <tr>
+        <th>Book</th>
+        <th>Student</th>
+        <th>Issue Date</th>
+         <th>Due Date</th>
+        <th>Return Date</th>
+        <th>Fine</th>
+    </tr>
+    {% for transaction in transactions %}
+    <tr>
+        <td>{{ transaction.book.book_name }}</td>
+        <td>{{ transaction.student.user.username }}</td>
+        <td>{{ transaction.issue_date }}</td>
+        <td>{{ transaction.due_date }}</td>
+        <td>{{ transaction.return_date }}</td>
+        <td>
+            {% if transaction.fine %}
+            Rs. {{ transaction.fine.amount }} {% if not transaction.fine.paid %}(Unpaid){% else %}(Paid){% endif %}
+            {% else %}
+            No Fine
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

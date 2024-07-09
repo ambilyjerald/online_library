@@ -1,0 +1,27 @@
+{% extends 'student_dash/studentdashboard.html' %}
+{% load crispy_forms_tags %}
+{% block search %}
+
+<form method="GET" style="display:grid;grid-template-columns:1fr 1fr;">
+    <p style="margin-bottom:2%;">{{searched_form.form.category}}</p>
+    <button class="btn btn-warning" type="submit" style="margin-bottom:2%;width:50%;margin-left:5px;" >Search </button>
+</form>
+
+{% endblock %}
+
+{% block content %}
+<h2>Search Books</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
+{% if books %}
+    <h3>Search Results:</h3>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.book_name }} by {{ book.author_name }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

@@ -2,6 +2,8 @@ from datetime import timedelta, datetime
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils import timezone
+
 
 # Create your models here.
 class Login_view(AbstractUser):
@@ -63,22 +65,31 @@ class Add_Book(models.Model):
 
 class Feedback(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name = "feedback_student")
-    date = models.DateField(auto_now = True)
+    date = models.DateTimeField(default=timezone.now)
+    # date = models.DateField(auto_now = True)
     subject = models.CharField(max_length = 250)
     feedback = models.TextField()
     reply = models.TextField(blank = True, null = True)
 
 
+class Transaction(models.Model):
+    book = models.ForeignKey(Add_Book, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    issue_date = models.DateTimeField(default=timezone.now)
+    return_date = models.DateTimeField(null=True, blank=True)
+    due_date = models.DateTimeField()
+    is_returned = models.BooleanField(default=False)
 
-def expiry():
-    return datetime.today() + timedelta(days=14)
+    def __str__(self):
+        return f'{self.book.book_name} issued by {self.student.user.username}'
 
-class IssuedBook(models.Model):
-    student_id = models.CharField(max_length=100, blank=True)
-    isbn = models.CharField(max_length=13)
-    issued_date = models.DateField(auto_now=True)
-    expiry_date = models.DateField(default=expiry)
+class Fine(models.Model):
+    transaction = models.OneToOneField(Transaction, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=5, decimal_places=2)
+    paid = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f'Fine for {self.transaction.book.book_name}'
 
 
 

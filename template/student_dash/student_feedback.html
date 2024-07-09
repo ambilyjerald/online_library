@@ -5,7 +5,7 @@
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{student_form_data|crispy}}
+    {{feedback_form_data|crispy}}
     <button type="submit" class="btn btn-warning">Submit</button>
 </form>
 

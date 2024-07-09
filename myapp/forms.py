@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 
-from myapp.models import Login_view, Faculty, Student, Add_Book, Feedback
+from myapp.models import Login_view, Faculty, Student, Add_Book, Feedback, Transaction
 
 
 class library_login(UserCreationForm):
@@ -59,3 +59,19 @@ class feedback_form(forms.ModelForm):
         model = Feedback
         fields = ('__all__')
         exclude = ('student','reply')
+
+class BookSearchForm(forms.Form):
+    query = forms.CharField(label='Search', max_length=100)
+
+class IssueBookForm(forms.Form):
+    book = forms.ModelChoiceField(queryset=Add_Book.objects.filter(copies=0))
+    student = forms.ModelChoiceField(queryset=Student.objects.all())
+
+class RenewBookForm(forms.ModelForm):
+    class Meta:
+        model = Transaction
+        fields = ['due_date']
+class ReturnBookForm(forms.ModelForm):
+    class Meta:
+        model = Transaction
+        fields = []
